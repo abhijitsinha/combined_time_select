@@ -4,18 +4,6 @@ module CombinedTimeSelect
   # Your code goes here...
 end
 
-
-module ActiveSupport
-  class HashWithIndifferentAccess < Hash
-    def parse_time_select!(attribute)
-      self[attribute] = Time.zone.parse("#{self["#{attribute}(1i)"]}-#{self["#{attribute}(2i)"]}-#{self["#{attribute}(3i)"]} #{self["#{attribute}(5i)"]}")
-      (1..5).each { |i| self.delete "#{attribute}(#{i}i)" }
-      self
-    end
-  end
-end
-
-
 module ActionView::Helpers
   class DateTimeSelector
      def select_minute_with_simple_time_select
